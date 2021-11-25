@@ -7,12 +7,20 @@ const divMeteo = document.getElementById('divMeteo');
 
 //Afficher une date correctemement à partir d'une Date()
 function uneBelleDate(laDate){
+    //je récupère l'heure
+    let lHeureZero = laDate.getHours();
+    //Je gère le problème quand l'heure est inférieure à 10 et qu'il manque un zéro
+    let lHeure = (laDate.getHours()).toLocaleString().split('');
+    if(lHeure.length==1){
+        lHeureZero = "0" + lHeure;
+    }
+    //Je retourne une belle date.
     return laDate.toLocaleString('fr', {  weekday: 'long' }) + " " 
             + laDate.getDate() + " " 
             + laDate.toLocaleString('fr', {  month: 'long' }) + " " 
             + laDate.getFullYear() + " - "
-            + laDate.getHours() + ":"
-            + laDate.getMinutes();
+            + lHeureZero + ":"
+            + "00";
 }
 
 
