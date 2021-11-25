@@ -34,27 +34,30 @@ function remplirDivVille ( response) {
      cityName.textContent = response.city.name + " (" + response.city.country + ")";
      divVille.appendChild(cityName);
      //ajout des coordonnées
-     const coord = document.createElement("h5");
+     const coord = document.createElement("div");
      coord.textContent = "latitude : " + response.city.coord.lat + ", longitude : " + response.city.coord.lon;
      divVille.appendChild(coord);
      //ajout population
-     const pop = document.createElement("h5");
+     const pop = document.createElement("div");
      pop.textContent = response.city.population + " habitants";
      divVille.appendChild(pop);
      //Ajout date auj
      //let dateTime = response.list[0].dt;
      let dayToday = new Date();
-     const dateDuJour = document.createElement("h5");
+     const dateDuJour = document.createElement("div");
      dateDuJour.textContent = "Aujourd'hui : " + uneBelleDate(dayToday);
      divVille.appendChild(dateDuJour);
  
      //ajout lever et coucher du soleil
      let lever = new Date(response.city.sunrise *1000);
      let coucher = new Date(response.city.sunset *1000);
-     const leverCoucher = document.createElement("h5");
+     const leverCoucher = document.createElement("div");
      leverCoucher.textContent = " - Lever du soleil : " + lever.getHours() + ":" + lever.getMinutes()
          + " - Coucher du soleil : " + coucher.getHours() + ":" + coucher.getMinutes();
      divVille.appendChild(leverCoucher);
+
+     //ajout des températures min et max
+     
 }
 
 
@@ -66,14 +69,30 @@ function remplirDivMeteo(response){
     //faire une boucle sur les 6 premières infos 
     for(let i=0; i<6; i++){
         //création d'une nouvelle div
-        let laDiv = document.createElement('div');
+        let laDivDate = document.createElement('div');
         //ajoute la date exacte
         let laDate = new Date(response.list[i].dt *1000);
         let laDt = uneBelleDate(laDate);
-        laDiv.textContent= laDt;
-        divMeteo.appendChild(laDiv);
-        //ajoute 
+        laDivDate.textContent= laDt;
+        divMeteo.appendChild(laDivDate);
 
+        //ajoute la température
+        let laDivTemp = document.createElement('div');
+        let laTemp = response.list[i].main.temp;;
+        laDivTemp.textContent= "temp : " + laTemp + " degré";
+        divMeteo.appendChild(laDivTemp);
+
+        //ajoute le ciel qu'il fait
+        let laDivCiel = document.createElement('div');
+        let leCiel = response.list[i].weather[0].description;
+        laDivCiel.textContent = "Ciel : " + leCiel;
+        divMeteo.appendChild(laDivCiel);
+
+        //Ajout de l'icon
+        let lImgIcon = document.createElement('img');
+        let lienIcon = response.list[i].weather[0].icon;
+        lImgIcon.src = "http://openweathermap.org/img/w/" + lienIcon + ".png";
+        divMeteo.appendChild(lImgIcon);
     }
 }
 
