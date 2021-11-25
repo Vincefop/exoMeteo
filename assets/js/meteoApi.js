@@ -57,7 +57,11 @@ function remplirDivVille ( response) {
      divVille.appendChild(leverCoucher);
 
      //ajout des températures min et max
-     
+     let laDivTempMinMax = document.createElement('div');
+     let leTxtTempMinMax = "min = " + response.list[0].main.temp_min + " degré, max = " + response.list[0].main.temp_max + " degré";
+     laDivTempMinMax.textContent = leTxtTempMinMax;
+     divVille.appendChild(laDivTempMinMax);
+
 }
 
 
