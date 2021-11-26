@@ -55,14 +55,15 @@ table {
 #ville * {
     margin: 10px;
 }
-* {
-    background-color: rgba(0,0,0,0.2);
-}
+/* * {
+    background-color: rgba(0,0,0,0.2); //Pour voir les différents blocs
+} */
+
 
 #divVille{
-    width: 60vw;        
+    width: 30vw;        
     text-align: left;
-    margin: 2rem auto; /*rem espace d'un caractère qui s'adapte au zoom */
+    margin: 2rem auto; /*rem espace d'un caractère qui s'adapte au zoom, em idem sans l'adaptation au zoom*/
 }
 
 #divMeteo{
@@ -70,7 +71,20 @@ table {
     flex-wrap: wrap;
 }
 
+
 .divUneMeteo {
     width: 33vw;
+    margin: 1rem auto;
 }
 
+/* .laDivDate, .laDivTemp, .laDivCiel {
+    width: 50vw;
+} */
+/* .laDivCiel {
+   text-align: center;
+   
+} */
+
+.lImgIcon {
+    
+}
