@@ -72,31 +72,40 @@ function remplirDivVille ( response) {
 function remplirDivMeteo(response){
     //faire une boucle sur les 6 premières infos 
     for(let i=0; i<6; i++){
+        let divUneMeteo = document.createElement('div');
+        divUneMeteo.setAttribute("class", "divUneMeteo");
         //création d'une nouvelle div
         let laDivDate = document.createElement('div');
+        laDivDate.setAttribute("class", "laDivDate");
         //ajoute la date exacte
         let laDate = new Date(response.list[i].dt *1000);
         let laDt = uneBelleDate(laDate);
         laDivDate.textContent= laDt;
-        divMeteo.appendChild(laDivDate);
+        divUneMeteo.appendChild(laDivDate);
 
         //ajoute la température
         let laDivTemp = document.createElement('div');
+        laDivTemp.setAttribute("class", "laDivTemp");
         let laTemp = response.list[i].main.temp;;
         laDivTemp.textContent= "temp : " + laTemp + " degré";
-        divMeteo.appendChild(laDivTemp);
+        divUneMeteo.appendChild(laDivTemp);
 
         //ajoute le ciel qu'il fait
         let laDivCiel = document.createElement('div');
+        laDivCiel.setAttribute('class', 'laDivCiel');
         let leCiel = response.list[i].weather[0].description;
         laDivCiel.textContent = "Ciel : " + leCiel;
-        divMeteo.appendChild(laDivCiel);
+        divUneMeteo.appendChild(laDivCiel);
 
         //Ajout de l'icon
         let lImgIcon = document.createElement('img');
+        lImgIcon.setAttribute('class', 'lImgIcon');
         let lienIcon = response.list[i].weather[0].icon;
         lImgIcon.src = "http://openweathermap.org/img/w/" + lienIcon + ".png";
-        divMeteo.appendChild(lImgIcon);
+        divUneMeteo.appendChild(lImgIcon);
+
+        //Ajout dans la div principale divMeteo
+        divMeteo.appendChild(divUneMeteo);
     }
 }
 
